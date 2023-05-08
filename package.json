@@ -1,6 +1,6 @@
 {
   "name": "@togethercrew.dev/tc-messagebroker",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "a service that include common things that need in every microservies ",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
