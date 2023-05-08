@@ -1,5 +1,4 @@
 import amqplib, { Channel, Connection, ConsumeMessage } from 'amqplib'
-import 'reflect-metadata';
 
 
 class RabbitMQ {
