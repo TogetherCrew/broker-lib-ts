@@ -21,6 +21,7 @@ class RabbitMQ {
         try {
             const amqpServer = connectionURL
             this.connection = await amqplib.connect(amqpServer)
+            console.log("channel was created!")
             this.channel = await this.connection.createChannel()
     
             // make sure that the channel is created, if not this statement will create it
@@ -38,8 +39,12 @@ class RabbitMQ {
         const event = data.event
         
         const eventFunction = this.eventFunction[event]
+        if(!eventFunction) {
+            console.log("An Event was received that doesn't exist")
+            return;
+        }
+
         const isAsync = eventFunction[Symbol.toStringTag] === 'AsyncFunction'
-        
         if(isAsync)
             eventFunction?.()?.then(() => {
                 if(msg) this.channel.ack(msg)
