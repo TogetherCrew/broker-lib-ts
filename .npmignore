@@ -1,0 +1,23 @@
+#tests
+test
+coverage
+
+#build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+
+#linters
+.jscsrc
+.jshintrc
+.eslintrc*
+
+#editor settings
+.idea
+.editorconfig
+
+# ignore the .ts files
+*.ts
+
+# include the .d.ts files
+!*.d.ts
