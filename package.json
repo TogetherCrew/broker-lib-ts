@@ -1,11 +1,12 @@
 {
   "name": "@togethercrew.dev/tc-messagebroker",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "a service that include common things that need in every microservies ",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "tsc && npm publish --access public"
   },
   "author": "",
   "license": "ISC",
