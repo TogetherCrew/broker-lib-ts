@@ -14,15 +14,6 @@ RabbitMQ.connect("connectionURL", "queueName").then(() => {
 })
 ```
 
-## Subscribe on specific event
-```Javascript
-import RabbitMQ from '@togethercrew.dev/tc-messagebroker';
-
-RabbitMQ.onEvent("eventName", (msg) => {})
-```
-> Ensure that the `onEvent` function is called when the application is launched
-
-
 ## Push to the specific queue and event
 ```Javascript
 import RabbitMQ from '@togethercrew.dev/tc-messagebroker';
@@ -30,3 +21,10 @@ import RabbitMQ from '@togethercrew.dev/tc-messagebroker';
 RabbitMQ.publish("queueName", "eventName", { key: "value" })
 ```
 
+## Subscribe on specific event
+```Javascript
+import RabbitMQ from '@togethercrew.dev/tc-messagebroker';
+
+RabbitMQ.onEvent("eventName", (msg) => {})
+```
+> Ensure that the `onEvent` function is called when the application is launched
