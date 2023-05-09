@@ -46,12 +46,12 @@ class RabbitMQ {
 
         const isAsync = eventFunction[Symbol.toStringTag] === 'AsyncFunction'
         if(isAsync)
-            eventFunction?.()?.then(() => {
+            eventFunction(data)?.then(() => {
                 if(msg) this.channel.ack(msg)
             })
         
         else {
-            eventFunction?.()
+            eventFunction(data)
             if(msg) this.channel.ack(msg)
         }
         
