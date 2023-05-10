@@ -21,7 +21,6 @@ class RabbitMQ {
         try {
             const amqpServer = connectionURL
             this.connection = await amqplib.connect(amqpServer)
-            console.log("channel was created!")
             this.channel = await this.connection.createChannel()
     
             // make sure that the channel is created, if not this statement will create it
@@ -34,8 +33,11 @@ class RabbitMQ {
         }
     }
 
-    consume = (msg: ConsumeMessage | null) => {        
-        const data = JSON.parse(msg?.content.toString() as string)
+    consume = (msg: ConsumeMessage | null) => {    
+        // if there is no message return nothing
+        if(!msg) return
+
+        const data = this.parseBufferToJSON(msg?.content)
         const event = data.event
         
         const eventFunction = this.eventFunction[event]
@@ -57,14 +59,36 @@ class RabbitMQ {
         
     }
 
-    publish(queueName: string, event: string, content: any, options?: amqplib.Options.Publish){
-        const data  = Buffer.from(JSON.stringify({event, date: new Date(), content}))
+    publish(queueName: string, event: string, content: Object, options?: amqplib.Options.Publish){
+        const data = this.convertObjectToBuffer({event, date: new Date(), content})
         
         this.channel.sendToQueue(queueName, data, options)
     }
 
     onEvent(eventName: string, onMessage: (msg: amqplib.ConsumeMessage | null) => void){
         this.eventFunction[eventName] = onMessage
+    }
+
+    createExchange(name: string, type: 'direct' | 'topic' | 'headers' | 'fanout' | 'match' , options?: amqplib.Options.AssertExchange){
+        return this.channel.assertExchange(name, type, options)
+    }
+
+    bindQueueToExchange(queueName: string, exchangeName: string, pattern: string){
+        return this.channel.bindQueue(queueName, exchangeName, pattern)
+    }
+
+    publishOnExchange(exchangeName: string, routingKey: string, event: string, content: Object, options?: amqplib.Options.Publish){
+        const data = this.convertObjectToBuffer({event, date: new Date(), content})
+
+        this.channel.publish(exchangeName, routingKey, data , options)
+    }
+
+    private convertObjectToBuffer(data: Object) {
+        return Buffer.from(JSON.stringify(data))
+    }
+
+    private parseBufferToJSON(data: Buffer){
+        return JSON.parse(data.toString() as string)
     }
 
 }
