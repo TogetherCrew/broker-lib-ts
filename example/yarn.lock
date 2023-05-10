@@ -11,10 +11,10 @@
     debug "^4.3.4"
     safe-buffer "~5.1.2"
 
-"@togethercrew.dev/tc-messagebroker@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@togethercrew.dev/tc-messagebroker/-/tc-messagebroker-0.0.11.tgz#10abeb8f71cb75046afdb660ce0fa6c72d6df723"
-  integrity sha512-INqvXy+4hr0IxQXekBxicntK2oNX7hZVAO99nqhLnu3agJ4A9hPy/dVMtgg7v5zr2sH77bmMAU02FV+U3e/eOw==
+"@togethercrew.dev/tc-messagebroker@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@togethercrew.dev/tc-messagebroker/-/tc-messagebroker-0.0.12.tgz#0bf5b3277a75bb33393dba321612a769cd7090eb"
+  integrity sha512-kb5Zik50YYL+d48b4F/wL8eUiIc1Kf9C0tYe87ivIsqUiQomzjLT4JZ3jdmvBY7mxdr4kXOc5mPqnIb+edPJlg==
   dependencies:
     "@types/amqplib" "^0.10.1"
     amqplib "^0.10.3"
