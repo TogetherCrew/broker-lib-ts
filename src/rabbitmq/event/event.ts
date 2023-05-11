@@ -27,5 +27,5 @@ const DiscordAnalyticsEvent = {
 export const Event = {
     [Queue.SERVER_API]: ServerEvent,
     [Queue.DISCORD_BOT]: DiscordBotEvent,
-    [Queue.DISCORD_ANALYTICS]: DiscordAnalyticsEvent,
+    [Queue.DISCORD_ANALYZER]: DiscordAnalyticsEvent,
 } as const
