@@ -6,7 +6,7 @@ enum BotEvent {
 }
 
 // events that will be used in all ANALYTIC microservices
-enum AnalyticsEvent {
+enum AnalyzerEvent {
     RUN = "RUN",
     SAVE = "SAVE"
 }
@@ -21,7 +21,7 @@ const DiscordBotEvent = {
 }
 
 const DiscordAnalyticsEvent = {
-    ...AnalyticsEvent
+    ...AnalyzerEvent
 }
 
 export const Event = {
