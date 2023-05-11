@@ -1,0 +1,5 @@
+export enum Queue {
+    SERVER_API = "SERVER_API",
+    DISCORD_BOT = "DISCORD_BOT",
+    DISCORD_ANALYTICS = "DISCORD_ANALYTICS"
+}
