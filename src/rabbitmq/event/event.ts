@@ -20,12 +20,12 @@ const DiscordBotEvent = {
     SEND_MESSAGE: "SEND_MESSAGE"
 }
 
-const DiscordAnalyticsEvent = {
+const DiscordAnalyzerEvent = {
     ...AnalyzerEvent
 }
 
 export const Event = {
     [Queue.SERVER_API]: ServerEvent,
     [Queue.DISCORD_BOT]: DiscordBotEvent,
-    [Queue.DISCORD_ANALYZER]: DiscordAnalyticsEvent,
+    [Queue.DISCORD_ANALYZER]: DiscordAnalyzerEvent,
 } as const
