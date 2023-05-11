@@ -26,6 +26,6 @@ export const Event = {
     [Queue.SERVER_API]: ServerEvent,
     [Queue.DISCORD_BOT]: DiscordBotEvent,
     [Queue.DISCORD_ANALYTICS]: DiscordAnalyticsEvent,
-    "BotEvent": BotEvent,
-    "AnalyticsEvent": AnalyticsEvent
+    "BOT_EVENT": BotEvent,
+    "ANALYTICS_EVENT": AnalyticsEvent
 } as const
