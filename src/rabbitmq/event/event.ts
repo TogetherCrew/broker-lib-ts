@@ -11,21 +11,21 @@ enum AnalyticsEvent {
     SAVE = "SAVE"
 }
 
-enum ServerEvent {
-    UPDATE_GUILD = "UPDATE_GUILD",
+const ServerEvent = {
+    UPDATE_GUILD: "UPDATE_GUILD",
 }
 
-enum DiscordBotEvent {
-    SEND_MESSAGE = "SEND_MESSAGE"
+const DiscordBotEvent = {
+    ...BotEvent,
+    SEND_MESSAGE: "SEND_MESSAGE"
 }
 
-enum DiscordAnalyticsEvent {
+const DiscordAnalyticsEvent = {
+    ...AnalyticsEvent
 }
 
 export const Event = {
     [Queue.SERVER_API]: ServerEvent,
     [Queue.DISCORD_BOT]: DiscordBotEvent,
     [Queue.DISCORD_ANALYTICS]: DiscordAnalyticsEvent,
-    "BOT_EVENT": BotEvent,
-    "ANALYTICS_EVENT": AnalyticsEvent
 } as const

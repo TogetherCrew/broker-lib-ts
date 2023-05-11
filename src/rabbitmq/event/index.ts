@@ -1,2 +1,2 @@
-export * from './event-message.type'
-export * from './event.enum'
+export * from './event-message.interface'
+export * from './event'
