@@ -1,11 +1,17 @@
-import { Status } from "src/enums"
+import { Status } from "../../../enums"
 import { IChoreography } from "./choreography.interface"
+import { Model } from "mongoose"
 
 export interface ISaga {
-    uuid: string
+    sagaId: string
     choreography: IChoreography
-    status: Status
+    status: string,
     data: any
     created_at: Date
     next: () => void
 }
+
+export interface SagaModel extends Model<ISaga> {
+    paginate(filter: object, options: object): any;
+  }
+  

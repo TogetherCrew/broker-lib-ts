@@ -1,6 +1,6 @@
 export enum Status {
-    PENDING,
-    IN_PROGRESS,
-    SUCCESS,
-    FAILED,
+    NOT_STARTED = "NOT_STARTED",
+    IN_PROGRESS = "IN_PROGRESS",
+    SUCCESS = "SUCCESS",
+    FAILED = "FAILED",
 }

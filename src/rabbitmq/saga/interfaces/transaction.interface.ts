@@ -1,4 +1,4 @@
-import { Status } from "src/enums"
+import { Status } from "../../../enums"
 import { Queue } from "../../queue"
 
 export interface ITransaction {
