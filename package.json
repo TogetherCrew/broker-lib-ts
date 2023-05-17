@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "@types/amqplib": "^0.10.1",
-    "amqplib": "^0.10.3"
+    "@types/uuid": "^9.0.1",
+    "amqplib": "^0.10.3",
+    "mongoose": "^7.1.1",
+    "uuid": "^9.0.0"
   }
 }
