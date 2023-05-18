@@ -9,5 +9,5 @@ export interface ITransaction {
     start?: Date
     end?: Date
     runtime?: number
-    error?: Error
+    error?: string
 }
