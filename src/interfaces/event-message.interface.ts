@@ -1,5 +1,5 @@
 export interface EventMessage {
-    event: string,
-    date: Date,
-    content: Record<string, any>
+  event: string;
+  date: Date;
+  content: Record<string, any>;
 }

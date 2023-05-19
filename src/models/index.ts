@@ -1,1 +1,1 @@
-export * from './saga.model'
+export * from './saga.model';
