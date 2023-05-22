@@ -21,6 +21,7 @@ const choreographySchema = new Schema<IChoreography>(
         order: {
           type: Number,
           required: true,
+          // TODO: add unique for order field
         },
         status: {
           type: String,
