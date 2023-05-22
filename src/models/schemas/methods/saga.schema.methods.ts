@@ -127,5 +127,7 @@ function endSuccessfulTransaction(transaction: ITransaction){
  */
 function endFailedTransaction(transaction: ITransaction, error: any){
   transaction.error = error as string;
-  transaction.status = Status.FAILED;
+
+  if(transaction.status != Status.SUCCESS)
+    transaction.status = Status.FAILED;
 }
