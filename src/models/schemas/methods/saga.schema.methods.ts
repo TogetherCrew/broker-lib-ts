@@ -1,7 +1,8 @@
+import RabbitMQ from '../../../rabbitmq';
 import { Status } from '../../../enums';
 import { ISaga, ITransaction, SagaModel } from '../../../interfaces';
 
-export async function next(publishMethod: (queueName: string, event: string, content: Object) => void, fn: () => any) {
+export async function next(fn: () => any) {
   // @ts-ignore
   const saga = this;
   const { choreography: { transactions } , data }: ISaga = saga;
@@ -34,7 +35,7 @@ export async function next(publishMethod: (queueName: string, event: string, con
       endSuccessfulSaga(saga)
     } else {
       // 6b. If not last, publish the next transaction message
-      publishMethod(nextTx.queue, nextTx.event, { uuid: saga.sagaId, data: result });
+      RabbitMQ.publish(nextTx.queue, nextTx.event, { uuid: saga.sagaId, data: result });
     }
     await saga.save();
   } catch (error) {
