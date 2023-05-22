@@ -8,7 +8,7 @@ export async function next(publishMethod: (queueName: string, event: string, con
   const { transactions } = choreography;
 
   // 1. Find the first transaction (tx) in the saga with the status NOT_STARTED
-  transactions.sort((cTx: ITransaction, nTx: ITransaction) => (cTx.order < nTx.order ? 1 : -1));
+  transactions.sort((cTx: ITransaction, nTx: ITransaction) => (cTx.order > nTx.order ? 1 : -1));
   const currentTx = transactions.find((tx: ITransaction) => tx.status === Status.NOT_STARTED);
   if (!currentTx) return; //TODO: should do something
 
