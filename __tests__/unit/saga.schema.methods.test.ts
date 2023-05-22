@@ -61,7 +61,7 @@ describe('Next function ( saga.next() )', () => {
 
     const that: Record<string, any> = {
       save: saveFn,
-      sagaId: 'sample-uuid',
+      sagaId: '6939de77-9ac4-4fd7-bea7-584920a98659',
       choreography: {
         transactions: [
           {
@@ -101,7 +101,7 @@ describe('Next function ( saga.next() )', () => {
     expect(saveFn).toHaveBeenCalledTimes(2);
     expect(publishFn).toHaveBeenCalledTimes(1);
     expect(publishFn).toHaveBeenCalledWith(Queue.DISCORD_ANALYZER, Event.DISCORD_ANALYZER.SAVE, {
-      uuid: 'sample-uuid',
+      uuid: '6939de77-9ac4-4fd7-bea7-584920a98659',
       data: { key: 'value' },
     });
     expect(taskFn).toHaveBeenCalledTimes(1);
@@ -115,7 +115,7 @@ describe('Next function ( saga.next() )', () => {
 
     const that: Record<string, any> = {
       save: saveFn,
-      sagaId: 'sample-uuid',
+      sagaId: 'fe50ff46-f2d9-46bf-ae01-a12e01ba2192',
       choreography: {
         transactions: [
           {
@@ -166,7 +166,7 @@ describe('Next function ( saga.next() )', () => {
 
     const that: Record<string, any> = {
       save: saveFn,
-      sagaId: 'sample-uuid',
+      sagaId: '9cb127bf-e00b-44cd-926b-6f293b45ec2e',
       choreography: {
         transactions: [
           {
