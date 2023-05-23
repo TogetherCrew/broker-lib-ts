@@ -7,7 +7,7 @@ export interface ISaga {
   status: string;
   data: any;
   created_at: Date;
-  next: (publishMethod: Function, fn: Function) => void;
+  next: (fn: Function) => void;
 }
 
 export interface SagaModel extends Model<ISaga> {
