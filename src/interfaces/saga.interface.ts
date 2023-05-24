@@ -7,7 +7,7 @@ export interface ISaga {
   status: string;
   data: any;
   created_at: Date;
-  next: (fn: Function) => void;
+  next: (fn: Function) => Promise<void>;
 }
 
 export interface SagaModel extends Model<ISaga> {
