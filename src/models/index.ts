@@ -1,1 +1,3 @@
-export * from './saga.model';
+import Saga from './saga.model';
+
+export { Saga }

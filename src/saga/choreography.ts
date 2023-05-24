@@ -1,4 +1,4 @@
-import { IChoreography, IChoreographyDict } from 'src/interfaces/choreography.interface';
+import { IChoreography, IChoreographyDict } from '../interfaces/choreography.interface';
 import { DISCORD_UPDATE_CHANNELS_TRANSACTIONS } from './transaction';
 
 /* define the DISCORD_UPDATE_CHANNELS choreography  */

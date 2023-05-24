@@ -1,10 +1,11 @@
 {
   "name": "@togethercrew.dev/tc-messagebroker",
-  "version": "0.0.20",
+  "version": "0.0.23",
   "description": "a service that include common things that need in every microservies ",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "start": "node ./dist/index.js",
     "build": "tsc",
     "publish": "npm publish --access public",
     "test": "npx jest",
@@ -25,5 +26,8 @@
     "amqplib": "^0.10.3",
     "mongoose": "^7.1.1",
     "uuid": "^9.0.0"
-  }
+  },
+  "files": [
+    "dist/**/*"
+  ]
 }
