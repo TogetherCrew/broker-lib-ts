@@ -8,7 +8,6 @@ enum BotEvent {
 // events that will be used in all ANALYTIC microservices
 enum AnalyzerEvent {
   RUN = 'RUN',
-  SAVE = 'SAVE',
 }
 
 const ServerEvent = {

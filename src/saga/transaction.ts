@@ -25,16 +25,9 @@ export const DISCORD_UPDATE_CHANNELS_TRANSACTIONS: ITransaction[] = [
     ...DEFAULT_TRANSACTION_PROPERTY,
   },
   {
-    queue: Queue.DISCORD_ANALYZER,
-    event: Event.DISCORD_ANALYZER.SAVE,
-    order: 3,
-    status: Status.NOT_STARTED,
-    ...DEFAULT_TRANSACTION_PROPERTY,
-  },
-  {
     queue: Queue.SERVER_API,
     event: Event.SERVER_API.UPDATE_GUILD,
-    order: 4,
+    order: 3,
     status: Status.NOT_STARTED,
     ...DEFAULT_TRANSACTION_PROPERTY,
   },
