@@ -1,3 +1,5 @@
-import Saga from './saga.model';
+import choreographySchema from './schemas/choreography.schema'
+import sagaSchema from './schemas/saga.schema'
 
-export { Saga }
+
+export { choreographySchema , sagaSchema}
