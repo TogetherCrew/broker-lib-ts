@@ -2,6 +2,18 @@ import RabbitMQ from '../../../rabbitmq';
 import { Status } from '../../../enums';
 import { ISaga, ITransaction, SagaModel } from '../../../interfaces';
 
+export async function start(){
+   // @ts-ignore
+  const saga = this;
+  const { choreography: { transactions } }: ISaga = saga;
+
+  sortTransactions(transactions)
+  const firstTx = transactions[0]
+
+  RabbitMQ.publish(firstTx.queue, firstTx.event, { uuid: saga.sagaId });
+
+}
+
 export async function next(fn: () => any) {
   // @ts-ignore
   const saga = this;
