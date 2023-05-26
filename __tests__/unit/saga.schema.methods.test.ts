@@ -31,13 +31,6 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 2,
-            status: Status.SUCCESS,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
             order: 2,
@@ -78,13 +71,6 @@ describe('Next function ( saga.next() )', () => {
             event: Event.DISCORD_ANALYZER.RUN,
             order: 2,
             status: Status.SUCCESS,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.NOT_STARTED,
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
@@ -132,13 +118,6 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.SUCCESS,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
             order: 4,
@@ -154,7 +133,7 @@ describe('Next function ( saga.next() )', () => {
     expect(saveFn).toHaveBeenCalledTimes(2);
     expect(taskFn).toHaveBeenCalledTimes(1);
     expect(publishFn).not.toHaveBeenCalled();
-    expect(that.choreography.transactions[3].status).toBe('SUCCESS');
+    expect(that.choreography.transactions[2].status).toBe('SUCCESS');
   });
 
   it('There is more than one NOT_STARTED transaction', async () => {
@@ -182,16 +161,9 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.NOT_STARTED,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
-            order: 4,
+            order: 3,
             status: Status.NOT_STARTED,
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
@@ -203,7 +175,7 @@ describe('Next function ( saga.next() )', () => {
 
     expect(saveFn).toHaveBeenCalledTimes(2);
     expect(publishFn).toHaveBeenCalledTimes(1);
-    expect(publishFn).toHaveBeenCalledWith(Queue.DISCORD_ANALYZER, Event.DISCORD_ANALYZER.SAVE, {
+    expect(publishFn).toHaveBeenCalledWith(Queue.SERVER_API, Event.SERVER_API.UPDATE_GUILD, {
       uuid: '6939de77-9ac4-4fd7-bea7-584920a98659',
       data: { key: 'value' },
     });
