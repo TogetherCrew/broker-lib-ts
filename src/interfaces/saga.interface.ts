@@ -7,6 +7,7 @@ export interface ISaga {
   status: string;
   data: any;
   created_at: Date;
+  start: () => Promise<void>;
   next: (fn: Function) => Promise<void>;
 }
 
