@@ -1,6 +1,6 @@
 import RabbitMQ from '../../../rabbitmq';
 import { Status } from '../../../enums';
-import { ISaga, ITransaction, SagaModel } from '../../../interfaces';
+import { ISaga, ITransaction } from '../../../interfaces';
 
 export async function start(){
    // @ts-ignore
@@ -9,6 +9,9 @@ export async function start(){
 
   sortTransactions(transactions)
   const firstTx = transactions[0]
+
+  startSaga(saga)
+  saga.save()
 
   RabbitMQ.publish(firstTx.queue, firstTx.event, { uuid: saga.sagaId });
 
@@ -24,13 +27,8 @@ export async function next(fn: () => any) {
   const currentTx = findFirstNotStartedTransaction(transactions) 
   if (!currentTx) return; //TODO: should do something
 
-  // 2a. Update the tx.status to IN_PROGRESS (save to db)
+  // 2. Update the tx.status to IN_PROGRESS (save to db)
   startTransaction(currentTx)
-
-  // 2b. Check if it was the first transaction in the choreography
-  const isFirstTransaction = isThisFirstTransaction(currentTx, transactions)
-  if(isFirstTransaction)
-    startSaga(saga)
 
   await saga.save();
 
@@ -72,14 +70,6 @@ function findFirstNotStartedTransaction(sortedTransactions: ITransaction[]){
   const transaction = sortedTransactions.find((tx: ITransaction) => tx.status === Status.NOT_STARTED);
 
   return transaction
-}
-
-function isThisFirstTransaction(transaction: ITransaction, transactions: ITransaction[]): boolean{
-  const orders = transactions.map((tx: ITransaction) => tx.order)
-  const minOrder = Math.min(...orders)
-
-  if(minOrder == transaction.order) return true
-  else return false
 }
 
 function findNextNotStartedTransaction(currentTransaction: ITransaction, sortedTransactions: ITransaction[]){
