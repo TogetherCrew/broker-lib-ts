@@ -1,5 +1,5 @@
 import { Event, Queue, Status } from '../../src';
-import { next } from '../../src/models/schemas/methods/saga.schema.methods';
+import { next, start } from '../../src/models/schemas/methods/saga.schema.methods';
 import RabbitMQ from '../../src';
 
 
@@ -12,6 +12,11 @@ const DEFAULT_TRANSACTION_PROPERTY = {
 };
 
 describe('Next function ( saga.next() )', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('There is no NOT_STARTED transaction', async () => {
     const that: Record<string, any> = {
       choreography: {
@@ -26,13 +31,6 @@ describe('Next function ( saga.next() )', () => {
           {
             queue: Queue.DISCORD_ANALYZER,
             event: Event.DISCORD_ANALYZER.RUN,
-            order: 2,
-            status: Status.SUCCESS,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
             order: 2,
             status: Status.SUCCESS,
             ...DEFAULT_TRANSACTION_PROPERTY,
@@ -81,13 +79,6 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.NOT_STARTED,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
             order: 4,
@@ -132,13 +123,6 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.SUCCESS,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
             order: 4,
@@ -154,7 +138,7 @@ describe('Next function ( saga.next() )', () => {
     expect(saveFn).toHaveBeenCalledTimes(2);
     expect(taskFn).toHaveBeenCalledTimes(1);
     expect(publishFn).not.toHaveBeenCalled();
-    expect(that.choreography.transactions[3].status).toBe('SUCCESS');
+    expect(that.choreography.transactions[2].status).toBe('SUCCESS');
   });
 
   it('There is more than one NOT_STARTED transaction', async () => {
@@ -182,16 +166,9 @@ describe('Next function ( saga.next() )', () => {
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
           {
-            queue: Queue.DISCORD_ANALYZER,
-            event: Event.DISCORD_ANALYZER.SAVE,
-            order: 3,
-            status: Status.NOT_STARTED,
-            ...DEFAULT_TRANSACTION_PROPERTY,
-          },
-          {
             queue: Queue.SERVER_API,
             event: Event.SERVER_API.UPDATE_GUILD,
-            order: 4,
+            order: 3,
             status: Status.NOT_STARTED,
             ...DEFAULT_TRANSACTION_PROPERTY,
           },
@@ -203,7 +180,7 @@ describe('Next function ( saga.next() )', () => {
 
     expect(saveFn).toHaveBeenCalledTimes(2);
     expect(publishFn).toHaveBeenCalledTimes(1);
-    expect(publishFn).toHaveBeenCalledWith(Queue.DISCORD_ANALYZER, Event.DISCORD_ANALYZER.SAVE, {
+    expect(publishFn).toHaveBeenCalledWith(Queue.SERVER_API, Event.SERVER_API.UPDATE_GUILD, {
       uuid: '6939de77-9ac4-4fd7-bea7-584920a98659',
       data: { key: 'value' },
     });
@@ -212,3 +189,53 @@ describe('Next function ( saga.next() )', () => {
   });
  
 });
+
+describe('Start function ( saga.start() )', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  
+  it('`start` function should work as expected', async () => {
+    const saveFn = jest.fn();
+    const publishFn = jest.spyOn(RabbitMQ, 'publish').mockImplementation(() => {})
+
+    const that: Record<string, any> = {
+      save: saveFn,
+      sagaId: '1139de77-9ac4-9dd7-bea7-334920a98659',
+      choreography: {
+        transactions: [
+          {
+            queue: Queue.DISCORD_BOT,
+            event: Event.DISCORD_BOT.FETCH,
+            order: 1,
+            status: Status.NOT_STARTED,
+            ...DEFAULT_TRANSACTION_PROPERTY,
+          },
+          {
+            queue: Queue.DISCORD_ANALYZER,
+            event: Event.DISCORD_ANALYZER.RUN,
+            order: 2,
+            status: Status.NOT_STARTED,
+            ...DEFAULT_TRANSACTION_PROPERTY,
+          },
+          {
+            queue: Queue.SERVER_API,
+            event: Event.SERVER_API.UPDATE_GUILD,
+            order: 3,
+            status: Status.NOT_STARTED,
+            ...DEFAULT_TRANSACTION_PROPERTY,
+          },
+        ],
+      },
+    };
+
+    await start.call(that);
+
+    expect(saveFn).toHaveBeenCalledTimes(1);
+    expect(publishFn).toHaveBeenCalledTimes(1);
+    expect(publishFn).toHaveBeenCalledWith(Queue.DISCORD_BOT, Event.DISCORD_BOT.FETCH, {
+      uuid: '1139de77-9ac4-9dd7-bea7-334920a98659',
+    });
+  })
+})
