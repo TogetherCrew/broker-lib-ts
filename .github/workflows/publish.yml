@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  ci:
+  publish:
     uses: TogetherCrew/operations/.github/workflows/publish.ts.yml@main
     secrets:
       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
