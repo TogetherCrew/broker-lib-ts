@@ -11,10 +11,9 @@ describe('RabbitMQ', () => {
     });
 
     it('If event exist consume function should call it (Async)', () => {
+      const ackFn = jest.fn()
       const mockChannel = {
-        ack: () => {
-          console.log('Ack was called!');
-        },
+        ack: ackFn
       };
       RabbitMQ.channel = mockChannel as unknown as Channel;
 
@@ -28,13 +27,13 @@ describe('RabbitMQ', () => {
 
       expect(RabbitMQ.consume(consumeMessage as unknown as ConsumeMessage)).toBeUndefined();
       expect(mockEventCallback).toHaveBeenCalledWith(afterBuffContent);
+      expect(ackFn).toHaveBeenCalledTimes(1)
     });
 
     it('If event exist consume function should call it (Sync)', () => {
+      const ackFn = jest.fn()
       const mockChannel = {
-        ack: () => {
-          console.log('Ack was called!');
-        },
+        ack: ackFn
       };
       RabbitMQ.channel = mockChannel as unknown as Channel;
 
@@ -48,6 +47,43 @@ describe('RabbitMQ', () => {
 
       expect(RabbitMQ.consume(consumeMessage as unknown as ConsumeMessage)).toBeUndefined();
       expect(mockEventCallback).toHaveBeenCalledWith(afterBuffContent);
+      expect(ackFn).toHaveBeenCalledTimes(1)
+
     });
   });
+
+  it('publishOnExchange', () => {
+    const convertObjectToBufferFn = jest.fn(() => ({ description: "returned from to buffer" }))
+    const publishFn = jest.fn()
+    const that = {
+      convertObjectToBuffer: convertObjectToBufferFn,
+      channel: {
+        publish: publishFn
+      }
+    }
+
+    RabbitMQ.publishOnExchange.call(that, 'exchangeName', 'routingKey', 'event', { key: "value"})
+
+    expect(convertObjectToBufferFn).toHaveBeenCalledTimes(1)
+    expect(convertObjectToBufferFn).toHaveBeenCalledWith({ event: 'event', content: { key: "value" }, date: new Date() })
+    
+    expect(publishFn).toHaveBeenCalledTimes(1)
+    expect(publishFn).toHaveBeenCalledWith("exchangeName", "routingKey", { description: "returned from to buffer" }, undefined)
+
+
+  });
+
+  it('bindQueueToExchange', () => {
+    const bindQueueFn = jest.fn()
+    const that = {
+      channel: {
+        bindQueue: bindQueueFn
+      }
+    }
+
+    RabbitMQ.bindQueueToExchange.call(that, "queueName", "exchangeName", "pattern")
+    expect(bindQueueFn).toHaveBeenCalledTimes(1)
+    expect(bindQueueFn).toHaveBeenCalledWith("queueName", "exchangeName", "pattern")
+  })
+
 });
