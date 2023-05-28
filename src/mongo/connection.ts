@@ -2,18 +2,6 @@ import mongoose, { Connection } from 'mongoose';
 import { sagaSchema } from '../models';
 import { ISaga } from '../interfaces';
 
-
-function connectionFactory(dbURI: string): Connection {
-  const connection = mongoose.createConnection(dbURI, { dbName: "Saga" });
-  connection.model<ISaga>('Saga', sagaSchema);
-
-  return connection;
-}
-
-export {
-  connectionFactory,
-};
-
 class MBConnection {
   // make the class Singleton
   private static instance: MBConnection;
