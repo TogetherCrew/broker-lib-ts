@@ -61,7 +61,7 @@ class RabbitMQ {
     this.channel.sendToQueue(queueName, data, options);
   }
 
-  onEvent(eventName: string, onMessage: (msg: amqplib.ConsumeMessage | null) => void) {
+  onEvent(eventName: string, onMessage: (msg: Record<string, any> | null) => void) {
     this.eventFunction[eventName] = onMessage;
   }
 
