@@ -32,3 +32,13 @@ export const DISCORD_UPDATE_CHANNELS_TRANSACTIONS: ITransaction[] = [
   //   ...DEFAULT_TRANSACTION_PROPERTY,
   // },
 ];
+
+export const DISCORD_SCHEDULED_JOB_TRANSACTIONS: ITransaction[] = [
+  {
+    queue: Queue.DISCORD_ANALYZER,
+    event: Event.DISCORD_ANALYZER.RUN_ONCE,
+    order: 1,
+    status: Status.NOT_STARTED,
+    ...DEFAULT_TRANSACTION_PROPERTY,
+  },
+];

@@ -1,5 +1,5 @@
-import { IChoreography, IChoreographyDict } from '../interfaces/choreography.interface';
-import { DISCORD_UPDATE_CHANNELS_TRANSACTIONS } from './transaction';
+import { IChoreography } from '../interfaces/choreography.interface';
+import { DISCORD_SCHEDULED_JOB_TRANSACTIONS, DISCORD_UPDATE_CHANNELS_TRANSACTIONS } from './transaction';
 
 /* define the DISCORD_UPDATE_CHANNELS choreography  */
 const DISCORD_UPDATE_CHANNELS: IChoreography = {
@@ -7,7 +7,14 @@ const DISCORD_UPDATE_CHANNELS: IChoreography = {
   transactions: DISCORD_UPDATE_CHANNELS_TRANSACTIONS,
 };
 
+/* define the DISCORD_SCHEDULED_JOB choreography  */
+const DISCORD_SCHEDULED_JOB: IChoreography = {
+  name: 'DISCORD_SCHEDULED_JOB',
+  transactions: DISCORD_SCHEDULED_JOB_TRANSACTIONS,
+};
+
 /* all available Choreographies, will grow overtime */
-export const ChoreographyDict: IChoreographyDict = {
-  DISCORD_UPDATE_CHANNELS: DISCORD_UPDATE_CHANNELS,
+export const ChoreographyDict = {
+  DISCORD_UPDATE_CHANNELS,
+  DISCORD_SCHEDULED_JOB
 } as const;
