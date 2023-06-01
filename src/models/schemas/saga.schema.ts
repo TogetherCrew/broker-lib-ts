@@ -20,8 +20,7 @@ const sagaSchema = new Schema<ISaga, SagaModel>(
       required: true,
     },
     data: {
-      type: Map,
-      of: String,
+      type: Schema.Types.Mixed,
     },
   },
   {
