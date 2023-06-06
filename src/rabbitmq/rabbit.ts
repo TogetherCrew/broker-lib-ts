@@ -17,18 +17,14 @@ class RabbitMQ {
   private eventFunction: Record<string, any> = {};
 
   async connect(connectionURL: string, queueName: string, consumeOptions?: amqplib.Options.Consume) {
-    try {
-      const amqpServer = connectionURL;
-      this.connection = await amqplib.connect(amqpServer);
-      this.channel = await this.connection.createChannel();
+    const amqpServer = connectionURL;
+    this.connection = await amqplib.connect(amqpServer);
+    this.channel = await this.connection.createChannel();
 
-      // make sure that the channel is created, if not this statement will create it
-      await this.channel.assertQueue(queueName);
+    // make sure that the channel is created, if not this statement will create it
+    await this.channel.assertQueue(queueName);
 
-      this.channel.consume(queueName, this.consume, consumeOptions);
-    } catch (error) {
-      console.error('Something went wrong with RabbitMQ', error);
-    }
+    this.channel.consume(queueName, this.consume, consumeOptions);
   }
 
   consume = (msg: ConsumeMessage | null) => {
