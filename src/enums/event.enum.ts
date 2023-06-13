@@ -19,6 +19,7 @@ const ServerEvent = {
 const DiscordBotEvent = {
   ...BotEvent,
   SEND_MESSAGE: 'SEND_MESSAGE',
+  FETCH_MEMBERS: 'FETCH_MEMBERS',
 };
 
 const DiscordAnalyzerEvent = {
