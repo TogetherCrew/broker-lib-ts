@@ -20,7 +20,7 @@ describe('choreography exists', () => {
 
         checkChoreography(ChoreographyDict.DISCORD_UPDATE_CHANNELS, {
             choreographyName: "DISCORD_UPDATE_CHANNELS",
-            transactionsLength: 2
+            transactionsLength: 3
         })
 
     })
