@@ -1,41 +1,46 @@
-import { ChoreographyDict } from '../../src';
+import { ChoreographyDict, IChoreography } from '../../src';
+
+function checkChoreography(choreography: IChoreography, toBe: {choreographyName: string, transactionsLength: number}){
+    it("exists", () => {
+        expect(choreography).toBeDefined()
+    })
+
+    it("have proper name", () => {
+        expect(choreography.name).toBe(toBe.choreographyName)
+    })
+    
+    it("have expected steps", () => {
+        expect(choreography.transactions.length).toBe(toBe.transactionsLength)
+    })
+}
 
 describe('choreography exists', () => {
 
     describe("DISCORD_UPDATE_CHANNELS", () => {
-        it("exists", () => {
-            expect(ChoreographyDict.DISCORD_UPDATE_CHANNELS).toBeDefined()
+
+        checkChoreography(ChoreographyDict.DISCORD_UPDATE_CHANNELS, {
+            choreographyName: "DISCORD_UPDATE_CHANNELS",
+            transactionsLength: 2
         })
-        it("have proper name", () => {
-            expect(ChoreographyDict.DISCORD_UPDATE_CHANNELS.name).toBe("DISCORD_UPDATE_CHANNELS")
-        })
-        it("have expected steps", () => {
-            expect(ChoreographyDict.DISCORD_UPDATE_CHANNELS.transactions.length).toBe(2)
-        })
+
     })
 
     describe("DISCORD_SCHEDULED_JOB", () => {
-        it("exists", () => {
-            expect(ChoreographyDict.DISCORD_SCHEDULED_JOB).toBeDefined()
+
+        checkChoreography(ChoreographyDict.DISCORD_SCHEDULED_JOB, {
+            choreographyName: "DISCORD_SCHEDULED_JOB",
+            transactionsLength: 1
         })
-        it("have proper name", () => {
-            expect(ChoreographyDict.DISCORD_SCHEDULED_JOB.name).toBe("DISCORD_SCHEDULED_JOB")
-        })
-        it("have expected steps", () => {
-            expect(ChoreographyDict.DISCORD_SCHEDULED_JOB.transactions.length).toBe(1)
-        })
+
     })
 
     describe("DISCORD_FETCH_MEMBERS", () => {
-        it("exists", () => {
-            expect(ChoreographyDict.DISCORD_FETCH_MEMBERS).toBeDefined()
+
+        checkChoreography(ChoreographyDict.DISCORD_FETCH_MEMBERS, {
+            choreographyName: "DISCORD_FETCH_MEMBERS",
+            transactionsLength: 1
         })
-        it("have proper name", () => {
-            expect(ChoreographyDict.DISCORD_FETCH_MEMBERS.name).toBe("DISCORD_FETCH_MEMBERS")
-        })
-        it("have expected steps", () => {
-            expect(ChoreographyDict.DISCORD_FETCH_MEMBERS.transactions.length).toBe(1)
-        })
+
     })
     
 })
