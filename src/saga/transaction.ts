@@ -45,3 +45,13 @@ export const DISCORD_SCHEDULED_JOB_TRANSACTIONS: ITransaction[] = [
     ...DEFAULT_TRANSACTION_PROPERTY,
   },
 ];
+
+export const DISCORD_FETCH_MEMBERS_TRANSACTIONS: ITransaction[] = [
+  {
+    queue: Queue.DISCORD_BOT,
+    event: Event.DISCORD_BOT.FETCH_MEMBERS,
+    order: 1,
+    status: Status.NOT_STARTED,
+    ...DEFAULT_TRANSACTION_PROPERTY,
+  },
+]
