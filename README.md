@@ -2,7 +2,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3bfc028af8f41cd1cd0c/test_coverage)](https://codeclimate.com/github/RnDAO/tc-messageBroker/test_coverage)
 
 # tc-messageBroker
-RabbitMQ library for brokering messages between different system components
+RabbitMQ library written in Typescript. Responsible for brokering messages between different services.
 
 
 ## Install 
