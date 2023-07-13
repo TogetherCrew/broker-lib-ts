@@ -55,6 +55,11 @@ describe('RabbitMQ', () => {
   it('publishOnExchange', () => {
     const convertObjectToBufferFn = jest.fn(() => ({ description: "returned from to buffer" }))
     const publishFn = jest.fn()
+    const mockDate = new Date("2023-07-13T14:34:00.550Z")
+    jest
+      .spyOn(global, 'Date')
+      .mockImplementation(() => mockDate)
+
     const that = {
       convertObjectToBuffer: convertObjectToBufferFn,
       channel: {
@@ -65,7 +70,7 @@ describe('RabbitMQ', () => {
     RabbitMQ.publishOnExchange.call(that, 'exchangeName', 'routingKey', 'event', { key: "value"})
 
     expect(convertObjectToBufferFn).toHaveBeenCalledTimes(1)
-    expect(convertObjectToBufferFn).toHaveBeenCalledWith({ event: 'event', content: { key: "value" }, date: new Date() })
+    expect(convertObjectToBufferFn).toHaveBeenCalledWith({ event: 'event', content: { key: "value" }, date: mockDate })
     
     expect(publishFn).toHaveBeenCalledTimes(1)
     expect(publishFn).toHaveBeenCalledWith("exchangeName", "routingKey", { description: "returned from to buffer" }, undefined)
