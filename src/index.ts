@@ -6,4 +6,4 @@ export * from './enums';
 export * from './interfaces';
 export * from './models';
 export * from './saga';
-export * from './mongo'
+export * from './mongo';

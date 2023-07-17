@@ -53,4 +53,4 @@ export const DISCORD_FETCH_MEMBERS_TRANSACTIONS: ITransaction[] = [
     order: 1,
     ...DEFAULT_TRANSACTION_PROPERTY,
   },
-]
+];
