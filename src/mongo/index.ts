@@ -1,4 +1,3 @@
-import MBConnection from './connection'
+import MBConnection from './connection';
 
-
-export { MBConnection }
+export { MBConnection };

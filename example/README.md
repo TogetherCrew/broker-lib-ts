@@ -8,10 +8,10 @@ This simple example:
 You will need docker to run an instance of RabbitMQ.
 
 ```bash
-$ docker-compose up
-$ yarn install
-$ yarn build
-$ yarn start
+docker-compose up
+yarn install
+yarn build
+yarn start
 ```
 
 Expected output:
