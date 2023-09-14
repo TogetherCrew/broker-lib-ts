@@ -3,6 +3,7 @@ import {
   DISCORD_FETCH_MEMBERS_TRANSACTIONS,
   DISCORD_SCHEDULED_JOB_TRANSACTIONS,
   DISCORD_UPDATE_CHANNELS_TRANSACTIONS,
+  TWITTER_REFRESH_TRANSACTIONS
 } from './transaction';
 
 /* define the DISCORD_UPDATE_CHANNELS choreography  */
@@ -22,9 +23,18 @@ const DISCORD_FETCH_MEMBERS: IChoreography = {
   transactions: DISCORD_FETCH_MEMBERS_TRANSACTIONS,
 };
 
+const TWITTER_REFRESH: IChoreography = {
+  name: 'TWITTER_REFRESH',
+  transactions: TWITTER_REFRESH_TRANSACTIONS
+}
+
 /* all available Choreographies, will grow overtime */
 export const ChoreographyDict = {
   DISCORD_UPDATE_CHANNELS,
   DISCORD_SCHEDULED_JOB,
   DISCORD_FETCH_MEMBERS,
+
+  // Twitter
+  TWITTER_REFRESH,
+
 } as const;

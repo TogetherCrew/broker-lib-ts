@@ -54,3 +54,31 @@ export const DISCORD_FETCH_MEMBERS_TRANSACTIONS: ITransaction[] = [
     ...DEFAULT_TRANSACTION_PROPERTY,
   },
 ];
+
+
+export const TWITTER_REFRESH_TRANSACTIONS: ITransaction[] = [
+  {
+    queue: Queue.TWITTER_BOT,
+    event: Event.TWITTER_BOT.EXTRACT.TWEETS,
+    order: 1,
+    ...DEFAULT_TRANSACTION_PROPERTY
+  },
+  {
+    queue: Queue.TWITTER_BOT,
+    event: Event.TWITTER_BOT.EXTRACT.LIKES,
+    order: 2,
+    ...DEFAULT_TRANSACTION_PROPERTY
+  },
+  {
+    queue: Queue.TWITTER_BOT,
+    event: Event.TWITTER_BOT.EXTRACT.PROFILES,
+    order: 3,
+    ...DEFAULT_TRANSACTION_PROPERTY
+  },
+  {
+    queue: Queue.TWITTER_BOT,
+    event: Event.TWITTER_BOT.SEND_MESSAGE,
+    order: 4,
+    ...DEFAULT_TRANSACTION_PROPERTY
+  }
+]
