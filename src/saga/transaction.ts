@@ -65,13 +65,13 @@ export const TWITTER_REFRESH_TRANSACTIONS: ITransaction[] = [
   },
   {
     queue: Queue.TWITTER_BOT,
-    event: Event.TWITTER_BOT.EXTRACT.PROFILES,
+    event: Event.TWITTER_BOT.EXTRACT.LIKES,
     order: 2,
     ...DEFAULT_TRANSACTION_PROPERTY
   },
   {
     queue: Queue.TWITTER_BOT,
-    event: Event.TWITTER_BOT.EXTRACT.LIKES,
+    event: Event.TWITTER_BOT.EXTRACT.PROFILES,
     order: 3,
     ...DEFAULT_TRANSACTION_PROPERTY
   },
