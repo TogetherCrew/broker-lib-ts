@@ -18,6 +18,7 @@ class MBConnection {
 
   connect(uri: string) {
     this.connectionUri = uri;
+    // TODO: check if connection is success 
   }
 
   get models() {

@@ -26,8 +26,19 @@ const DiscordAnalyzerEvent = {
   ...AnalyzerEvent,
 };
 
+const TwitterBot = {
+  EXTRACT: {
+    TWEETS: "EXTRACT_TWEETS",
+    LIKES: "EXTRACT_LIKES",
+    PROFILES: "EXTRACT_PROFILES"
+  },
+  SEND_MESSAGE: 'SEND_MESSAGE',
+}
+
 export const Event = {
   [Queue.SERVER_API]: ServerEvent,
   [Queue.DISCORD_BOT]: DiscordBotEvent,
   [Queue.DISCORD_ANALYZER]: DiscordAnalyzerEvent,
+
+  [Queue.TWITTER_BOT]: TwitterBot
 } as const;
