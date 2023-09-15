@@ -76,8 +76,8 @@ export const TWITTER_REFRESH_TRANSACTIONS: ITransaction[] = [
     ...DEFAULT_TRANSACTION_PROPERTY
   },
   {
-    queue: Queue.TWITTER_BOT,
-    event: Event.TWITTER_BOT.SEND_MESSAGE,
+    queue: Queue.DISCORD_BOT,
+    event: Event.DISCORD_BOT.SEND_MESSAGE,
     order: 4,
     ...DEFAULT_TRANSACTION_PROPERTY
   }
