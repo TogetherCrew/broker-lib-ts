@@ -20,13 +20,21 @@ const DiscordBotEvent = {
   ...BotEvent,
   SEND_MESSAGE: 'SEND_MESSAGE',
   FETCH_MEMBERS: 'FETCH_MEMBERS',
+  INTERACTION_RESPONSE: {
+    CREATE: 'INTERACTION_RESPONSE_CREATE',
+    EDIT: 'INTERACTION_RESPONSE_EDIT',
+    DELETE: 'INTERACTION_RESPONSE_DELETE',
+  },
+  FOLLOWUP_MESSAGE: {
+    CREATE: 'FOLLOWUP_CREATE',
+  }
 };
 
 const DiscordAnalyzerEvent = {
   ...AnalyzerEvent,
 };
 
-const TwitterBot = {
+const TwitterBotEvent = {
   EXTRACT: {
     TWEETS: "EXTRACT_TWEETS",
     LIKES: "EXTRACT_LIKES",
@@ -35,10 +43,16 @@ const TwitterBot = {
   SEND_MESSAGE: 'SEND_MESSAGE',
 }
 
+const HivemindEvent = {
+  INTERACTION_CREATED: 'INTERACTION_CREATED',
+  GUILD_MESSAGES_UPDATED: 'GUILD_MESSAGES_UPDATED',
+}
+
 export const Event = {
   [Queue.SERVER_API]: ServerEvent,
   [Queue.DISCORD_BOT]: DiscordBotEvent,
   [Queue.DISCORD_ANALYZER]: DiscordAnalyzerEvent,
 
-  [Queue.TWITTER_BOT]: TwitterBot
+  [Queue.TWITTER_BOT]: TwitterBotEvent,
+  [Queue.HIVEMIND]: HivemindEvent,
 } as const;
