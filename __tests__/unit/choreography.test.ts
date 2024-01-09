@@ -38,4 +38,18 @@ describe('choreography exists', () => {
       transactionsLength: 1,
     });
   });
+
+  describe('ANNOUNCEMENT_SEND_MESSAGE_TO_USER', () => {
+    checkChoreography(ChoreographyDict.ANNOUNCEMENT_SEND_MESSAGE_TO_USER, {
+      choreographyName: 'ANNOUNCEMENT_SEND_MESSAGE_TO_USER',
+      transactionsLength: 1,
+    });
+  });
+
+  describe('ANNOUNCEMENT_SEND_MESSAGE_TO_CHANNEL', () => {
+    checkChoreography(ChoreographyDict.ANNOUNCEMENT_SEND_MESSAGE_TO_CHANNEL, {
+      choreographyName: 'ANNOUNCEMENT_SEND_MESSAGE_TO_CHANNEL',
+      transactionsLength: 1,
+    });
+  });
 });
