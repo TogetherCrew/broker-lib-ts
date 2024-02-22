@@ -86,8 +86,20 @@ export const TWITTER_REFRESH_TRANSACTIONS: ITransaction[] = [
 export const ANNOUNCEMENT_SEND_MESSAGE_TO_USER_TRANSACTIONS: ITransaction[] = [
   {
     queue: Queue.DISCORD_BOT,
-    event: Event.DISCORD_BOT.SEND_MESSAGE,
+    event: Event.DISCORD_BOT.SEND_MESSAGE_TO_CHANNEL,
     order: 1,
+    ...DEFAULT_TRANSACTION_PROPERTY,
+  },
+  {
+    queue: Queue.SERVER_API,
+    event: Event.SERVER_API.ANNOUNCEMENT_SAFETY_MESSAGE,
+    order: 2,
+    ...DEFAULT_TRANSACTION_PROPERTY,
+  },
+  {
+    queue: Queue.DISCORD_BOT,
+    event: Event.DISCORD_BOT.SEND_MESSAGE,
+    order: 3,
     ...DEFAULT_TRANSACTION_PROPERTY,
   }
 ]
@@ -96,15 +108,6 @@ export const ANNOUNCEMENT_SEND_MESSAGE_TO_CHANNEL_TRANSACTIONS: ITransaction[] =
   {
     queue: Queue.DISCORD_BOT,
     event: Event.DISCORD_BOT.SEND_MESSAGE_TO_CHANNEL,
-    order: 1,
-    ...DEFAULT_TRANSACTION_PROPERTY,
-  }
-]
-
-export const ANNOUNCEMENT_SAFETY_MESSAGE_TRANSACTIONS: ITransaction[] = [
-  {
-    queue: Queue.SERVER_API,
-    event: Event.SERVER_API.ANNOUNCEMENT_SAFETY_MESSAGE,
     order: 1,
     ...DEFAULT_TRANSACTION_PROPERTY,
   }
