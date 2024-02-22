@@ -42,7 +42,7 @@ describe('choreography exists', () => {
   describe('ANNOUNCEMENT_SEND_MESSAGE_TO_USER', () => {
     checkChoreography(ChoreographyDict.ANNOUNCEMENT_SEND_MESSAGE_TO_USER, {
       choreographyName: 'ANNOUNCEMENT_SEND_MESSAGE_TO_USER',
-      transactionsLength: 1,
+      transactionsLength: 3,
     });
   });
 

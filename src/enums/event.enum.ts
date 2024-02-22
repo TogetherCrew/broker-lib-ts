@@ -14,6 +14,7 @@ enum AnalyzerEvent {
 
 const ServerEvent = {
   UPDATE_GUILD: 'UPDATE_GUILD',
+  ANNOUNCEMENT_SAFETY_MESSAGE: 'ANNOUNCEMENT_SAFETY_MESSAGE'
 };
 
 const DiscordBotEvent = {
