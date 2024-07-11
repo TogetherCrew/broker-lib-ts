@@ -21,16 +21,10 @@ describe('choreography exists', () => {
   describe('DISCORD_UPDATE_CHANNELS', () => {
     checkChoreography(ChoreographyDict.DISCORD_UPDATE_CHANNELS, {
       choreographyName: 'DISCORD_UPDATE_CHANNELS',
-      transactionsLength: 3,
-    });
-  });
-
-  describe('DISCORD_SCHEDULED_JOB', () => {
-    checkChoreography(ChoreographyDict.DISCORD_SCHEDULED_JOB, {
-      choreographyName: 'DISCORD_SCHEDULED_JOB',
       transactionsLength: 1,
     });
   });
+
 
   describe('DISCORD_FETCH_MEMBERS', () => {
     checkChoreography(ChoreographyDict.DISCORD_FETCH_MEMBERS, {
