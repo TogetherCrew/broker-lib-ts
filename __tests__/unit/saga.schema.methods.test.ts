@@ -40,7 +40,7 @@ describe('Next function ( saga.next() )', () => {
   let taskFn: jest.Mock;
   beforeEach(() => {
     saveFn = jest.fn();
-    publishFn = jest.spyOn(RabbitMQ, 'publish').mockImplementation(() => {});
+    publishFn = jest.spyOn(RabbitMQ, 'publish').mockImplementation(() => { });
     taskFn = jest.fn(() => ({ key: 'value' }));
   });
 
@@ -59,7 +59,7 @@ describe('Next function ( saga.next() )', () => {
       },
     };
 
-    const a = await next.call(that, () => {});
+    const a = await next.call(that, () => { });
     expect(a).toBeUndefined();
   });
 
@@ -141,7 +141,7 @@ describe('Start function ( saga.start() )', () => {
 
   it('`start` function should work as expected', async () => {
     const saveFn = jest.fn();
-    const publishFn = jest.spyOn(RabbitMQ, 'publish').mockImplementation(() => {});
+    const publishFn = jest.spyOn(RabbitMQ, 'publish').mockImplementation(() => { });
 
     const that: Record<string, any> = {
       save: saveFn,

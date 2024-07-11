@@ -5,6 +5,6 @@ export enum Queue {
 
   // TWITTER
   TWITTER_BOT = 'TWITTER_BOT',
-  
+
   HIVEMIND = 'HIVEMIND',
 }
