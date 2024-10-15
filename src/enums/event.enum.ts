@@ -14,7 +14,7 @@ enum AnalyzerEvent {
 
 const ServerEvent = {
   UPDATE_GUILD: 'UPDATE_GUILD',
-  ANNOUNCEMENT_SAFETY_MESSAGE: 'ANNOUNCEMENT_SAFETY_MESSAGE'
+  ANNOUNCEMENT_SAFETY_MESSAGE: 'ANNOUNCEMENT_SAFETY_MESSAGE',
 };
 
 const DiscordBotEvent = {
@@ -29,7 +29,12 @@ const DiscordBotEvent = {
   },
   FOLLOWUP_MESSAGE: {
     CREATE: 'FOLLOWUP_CREATE',
-  }
+  },
+};
+
+const DiscordHivemindAdapterEvent = {
+  QUESTION_COMMAND_RECIVED: 'QUESTION_COMMAND_RECEIVED',
+  QUESTION_RESPONSE_RECIVED: 'QUESTION_RESPONSE_RECEIVED',
 };
 
 const DiscordAnalyzerEvent = {
@@ -38,23 +43,22 @@ const DiscordAnalyzerEvent = {
 
 const TwitterBotEvent = {
   EXTRACT: {
-    TWEETS: "EXTRACT_TWEETS",
-    LIKES: "EXTRACT_LIKES",
-    PROFILES: "EXTRACT_PROFILES"
+    TWEETS: 'EXTRACT_TWEETS',
+    LIKES: 'EXTRACT_LIKES',
+    PROFILES: 'EXTRACT_PROFILES',
   },
   SEND_MESSAGE: 'SEND_MESSAGE',
-}
+};
 
 const HivemindEvent = {
-  INTERACTION_CREATED: 'INTERACTION_CREATED',
-  GUILD_MESSAGES_UPDATED: 'GUILD_MESSAGES_UPDATED',
-}
+  QUESTION_RECIVED: 'QUESTION_RECEIVED',
+};
 
 export const Event = {
   [Queue.SERVER_API]: ServerEvent,
   [Queue.DISCORD_BOT]: DiscordBotEvent,
   [Queue.DISCORD_ANALYZER]: DiscordAnalyzerEvent,
-
+  [Queue.DISCORD_HIVEMIND_ADAPTER]: DiscordHivemindAdapterEvent,
   [Queue.TWITTER_BOT]: TwitterBotEvent,
   [Queue.HIVEMIND]: HivemindEvent,
 } as const;
