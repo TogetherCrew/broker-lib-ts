@@ -33,8 +33,8 @@ const DiscordBotEvent = {
 };
 
 const DiscordHivemindAdapterEvent = {
-  QUESTION_COMMAND_RECIVED: 'QUESTION_COMMAND_RECEIVED',
-  QUESTION_RESPONSE_RECIVED: 'QUESTION_RESPONSE_RECEIVED',
+  QUESTION_COMMAND_RECEIVED: 'QUESTION_COMMAND_RECEIVED',
+  QUESTION_RESPONSE_RECEIVED: 'QUESTION_RESPONSE_RECEIVED',
 };
 
 const DiscordAnalyzerEvent = {
@@ -51,7 +51,7 @@ const TwitterBotEvent = {
 };
 
 const HivemindEvent = {
-  QUESTION_RECIVED: 'QUESTION_RECEIVED',
+  QUESTION_RECEIVED: 'QUESTION_RECEIVED',
 };
 
 export const Event = {
