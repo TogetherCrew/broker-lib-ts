@@ -99,8 +99,11 @@ class RabbitMQ {
     } else if (Array.isArray(obj)) {
       return obj.map(item => this.handleBigInts(item, seen));
     } else if (typeof obj === 'object' && obj !== null) {
+      if (obj instanceof Date || obj instanceof RegExp || obj instanceof Error) {
+        return obj;
+      }
       if (seen.has(obj)) {
-        return;
+        return '[Circular]';
       }
       seen.add(obj);
       const result: any = {};
