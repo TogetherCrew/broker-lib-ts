@@ -86,11 +86,30 @@ class RabbitMQ {
   }
 
   private convertObjectToBuffer(data: Object) {
-    return Buffer.from(JSON.stringify(data));
+    return Buffer.from(JSON.stringify(this.handleBigInts(data)));
   }
 
   private parseBufferToJSON(data: Buffer) {
     return JSON.parse(data.toString() as string);
+  }
+
+  private handleBigInts(obj: any, seen = new WeakSet()): any {
+    if (typeof obj === 'bigint') {
+      return obj.toString();
+    } else if (Array.isArray(obj)) {
+      return obj.map(item => this.handleBigInts(item, seen));
+    } else if (typeof obj === 'object' && obj !== null) {
+      if (seen.has(obj)) {
+        return;
+      }
+      seen.add(obj);
+      const result: any = {};
+      for (const [key, value] of Object.entries(obj)) {
+        result[key] = this.handleBigInts(value, seen);
+      }
+      return result;
+    }
+    return obj;
   }
 }
 
