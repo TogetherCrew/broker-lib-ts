@@ -15,6 +15,7 @@ enum AnalyzerEvent {
 const ServerEvent = {
   UPDATE_GUILD: 'UPDATE_GUILD',
   ANNOUNCEMENT_SAFETY_MESSAGE: 'ANNOUNCEMENT_SAFETY_MESSAGE',
+  OCI_USER_PROFILES_GET_RESPONSE: 'OCI_USER_PROFILES_GET_RESPONSE',
 };
 
 const DiscordBotEvent = {
@@ -53,6 +54,9 @@ const TwitterBotEvent = {
 const HivemindEvent = {
   QUESTION_RECEIVED: 'QUESTION_RECEIVED',
 };
+const OciBackendEvent = {
+  OCI_USER_PROFILES_GET_REQUEST: 'OCI_USER_PROFILES_GET_REQUEST',
+};
 
 export const Event = {
   [Queue.SERVER_API]: ServerEvent,
@@ -61,4 +65,5 @@ export const Event = {
   [Queue.DISCORD_HIVEMIND_ADAPTER]: DiscordHivemindAdapterEvent,
   [Queue.TWITTER_BOT]: TwitterBotEvent,
   [Queue.HIVEMIND]: HivemindEvent,
+  [Queue.OCI_BACKEND]: OciBackendEvent,
 } as const;
