@@ -6,4 +6,5 @@ export enum Queue {
   TWITTER_BOT = 'TWITTER_BOT',
   HIVEMIND = 'HIVEMIND',
   OCI_BACKEND = 'OCI_BACKEND',
+  TELEGRAM = 'TELEGRAM'
 }

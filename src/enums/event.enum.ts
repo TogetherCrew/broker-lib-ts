@@ -58,6 +58,9 @@ const HivemindEvent = {
 const OciBackendEvent = {
   OCI_USER_PROFILES_GET_REQUEST: 'OCI_USER_PROFILES_GET_REQUEST',
 };
+const TelegramEvent = {
+  SEND_MESSAGE: 'SEND_MESSAGE'
+}
 
 export const Event = {
   [Queue.SERVER_API]: ServerEvent,
@@ -67,4 +70,5 @@ export const Event = {
   [Queue.TWITTER_BOT]: TwitterBotEvent,
   [Queue.HIVEMIND]: HivemindEvent,
   [Queue.OCI_BACKEND]: OciBackendEvent,
+  [Queue.TELEGRAM]: TelegramEvent
 } as const;
